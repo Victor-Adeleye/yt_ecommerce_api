@@ -134,11 +134,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "apiApp.CustomUser"
 
 # STRIPE KEYS
-STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
-STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY")
-STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
+STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET")
 
-if not STRIPE_SECRET_KEY:
-    raise RuntimeError("❌ STRIPE_SECRET_KEY not found in environment")
-
-print("Stripe Secret Key Loaded:", STRIPE_SECRET_KEY[:10], "...")
+# Ensure they exist
+if not all([STRIPE_SECRET_KEY, STRIPE_PUBLIC_KEY, STRIPE_WEBHOOK_SECRET]):
+    raise RuntimeError("❌ Stripe environment variables not set")
