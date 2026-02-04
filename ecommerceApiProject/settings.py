@@ -17,9 +17,8 @@ ALLOWED_HOSTS = ["*"]
 
 # CSRF & SESSION
 CSRF_TRUSTED_ORIGINS = [
-    "https://ytecommerceapi2025-production.up.railway.app",
-    "https://villageless-phonotypical-tori.ngrok-free.dev",
-    "https://*.ngrok-free.dev",
+    "https://ytecommerceapi-production.up.railway.app",
+    
 ]
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
