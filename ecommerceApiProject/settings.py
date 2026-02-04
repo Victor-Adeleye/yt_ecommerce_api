@@ -17,13 +17,16 @@ ALLOWED_HOSTS = ["*"]
 
 # CSRF & SESSION
 CSRF_TRUSTED_ORIGINS = [
-    "https://ytecommerceapi-production.up.railway.app",
-    
+    "https://ytecommerceapi-production.up.railway.app",  # your public domain
+    "https://villageless-phonotypical-tori.ngrok-free.dev",
+    "https://*.ngrok-free.dev",
 ]
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = "None"
 SESSION_COOKIE_SAMESITE = "None"
+
 
 # INSTALLED APPS
 INSTALLED_APPS = [
