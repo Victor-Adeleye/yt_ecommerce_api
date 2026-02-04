@@ -101,13 +101,13 @@ if os.getenv("PG_HOST"):
             "PORT": os.getenv("PG_PORT", 52020),
         }
     }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
+# else:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": BASE_DIR / "db.sqlite3",
+#         }
+#     }
 
 # PASSWORD VALIDATORS
 AUTH_PASSWORD_VALIDATORS = [
