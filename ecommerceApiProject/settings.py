@@ -91,11 +91,10 @@ if os.getenv("PGHOST"):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("PGDATABASE"),
-            "USER": os.getenv("PGUSER"),
-            "PASSWORD": os.getenv("PGPASSWORD"),
-            "HOST": os.getenv("PGHOST"),
-            "PORT": os.getenv("PGPORT"),
+            "NAME": 'railway',
+            "USER": 'postgres',
+            "PASSWORD": os.getenv("PG_PASSWORD"),
+            "HOST": os.getenv("PG_HOST"),
         }
     }
 else:
