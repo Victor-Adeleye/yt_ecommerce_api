@@ -86,15 +86,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "ecommerceApiProject.wsgi.application"
 
+
 # DATABASE
-if os.getenv("PGHOST"):
+if os.getenv("PG_HOST"):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": 'railway',
-            "USER": 'postgres',
+            "NAME": "railway",                     # Default Railway DB name
+            "USER": "postgres",                    # Default Railway DB user
             "PASSWORD": os.getenv("PG_PASSWORD"),
             "HOST": os.getenv("PG_HOST"),
+            "PORT": os.getenv("PG_PORT", 52020),
         }
     }
 else:
@@ -133,10 +135,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "apiApp.CustomUser"
 
 # STRIPE KEYS
-STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
-STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
-STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "")
+STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
 
-# Ensure they exist
-if not all([STRIPE_SECRET_KEY, STRIPE_PUBLIC_KEY, STRIPE_WEBHOOK_SECRET]):
-    raise RuntimeError("❌ Stripe environment variables not set")
+# Prevent Railway crash if Stripe keys are missing
+if DEBUG and not all([STRIPE_SECRET_KEY, STRIPE_PUBLIC_KEY, STRIPE_WEBHOOK_SECRET]):
+    print("⚠ Stripe environment variables not set. Skipping Stripe in DEBUG mode.")
